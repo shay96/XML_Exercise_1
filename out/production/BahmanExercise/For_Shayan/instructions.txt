@@ -1,0 +1,54 @@
+Write a program to parse (XmlParser) xml into an internal model XmlObject.
+Once the XmlObject is constructed, implemet XmlPresesenter to present the data to the user. 
+
+Find the TODO:s in the code. 
+
+* The parser: 
+** I've made a start for you and given as a hint to use the util class Scanner.
+
+** Hint: ExceptionHandling. 
+*** What happens if the file that you are trying to parse does not exist or is not an Xml?
+
+** Think about how to best validate that the file you are trying to parse follows the xml pattern.
+*** You do not need to find every fault and typo in LivWithError.xml but that would be impressive. 
+
+* The XmlObject
+** This object should be able to handle any Xml
+** You can ignore file headers of the type "<?xml version="1.0" encoding="UTF-8"?>" and "<annotation>Copyright (c) Realismus Modding, 2017-2019</annotation>"
+   which usually holds metainformation about encoding, versions and copywrite. 
+** Hint: Child/Parent, Linked lists.
+
+** An xml is of the form <header option1="attribute1" option2="attribute2">text with content<header/>
+
+** Notice that "text with content" can in turn be an xml object, i.e.
+<header1 name11="attribute11" name12="attribute12"> text for the top level
+   <header2 name21="attribute21" name22="attribute22">text for inner level<header2/>
+<header1/>
+
+There is an exception: 
+If the tag is empty, ie. it does not contain any children or text it can be closed like:
+
+<header name=attribute/>
+
+as opposed to 
+
+<header name=attribute>content<header/>
+
+
+
+
+** Dealing with this hierarchy is the main challenge of this exercise.
+
+
+
+* The XmlPresenter: 
+** You can choose how to implement this yourself. You can use Java Swing or any other graphical library. 
+   or you can make printouts on the screen. 
+** The main requierement is that hierarchy should be apparanet, and it should be easy to see what options each tag has. 
+
+* The JU_MyXmlParserTest
+** Make this test compile and run. 
+** Write a test for Liv.xml, data_animals.xml and LivWithErrors.xml
+
+
+
