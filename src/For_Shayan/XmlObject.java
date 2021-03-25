@@ -36,6 +36,8 @@ public class XmlObject {
         return texContent;
     }
 
+
+
     @Override
     public String toString() {
         return "XmlObject{" +
@@ -76,8 +78,23 @@ public class XmlObject {
             return this;
         }
 
+        public String getHeader() {
+            return header;
+        }
 
-        public XmlObject build() throws Exception {
+        public Map<String, String> getNameAttributePairs() {
+            return nameAttributePairs;
+        }
+
+        public String getTextContent() {
+            return textContent;
+        }
+
+        public List<XmlObjectBuilder> getChildren() {
+            return children;
+        }
+
+        public XmlObject build() throws Exception{
             validate();
             return new XmlObject(header, nameAttributePairs, textContent, children);
 
