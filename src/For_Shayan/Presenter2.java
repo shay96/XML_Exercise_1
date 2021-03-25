@@ -46,11 +46,11 @@ public class Presenter2 {
 
     private String generateAttribute(int depth, String key, String value) {
         return "\t|".repeat(depth) +
-                "\u001b[33m" +
+                "\u001b[32m" +
                 key +
                 "\u001b[0m" +
                 ": " +
-                "\u001b[32m" +
+                "\u001b[34m" +
                 value +
                 "\u001b[0m";
     }
@@ -58,7 +58,7 @@ public class Presenter2 {
     private String generateText(int depth, String text) {
         StringBuilder output = new StringBuilder();
         output.append("\t|".repeat(depth))
-                .append("\u001b[36m")
+                .append("\u001b[35m")
                 .append(text)
                 .append("\u001b[0m");
         return output.toString();

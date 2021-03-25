@@ -21,7 +21,7 @@ public class JU_MyXmlParserTest {
     @BeforeEach
     public void setUpClass() {
         this.catalogOfXmlToBePresented = "/Users/shayanaghaei/Documents/BahmanExercise/src/For_Shayan/";
-        this.testFileLiv = new File(catalogOfXmlToBePresented + "data_animals.xml");
+        this.testFileLiv = new File(catalogOfXmlToBePresented + "Liv.xml");
     }
 
     @Test
