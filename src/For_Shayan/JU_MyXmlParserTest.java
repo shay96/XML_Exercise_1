@@ -1,5 +1,6 @@
 package For_Shayan;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.File;
@@ -14,6 +15,8 @@ public class JU_MyXmlParserTest {
     private File testFileLivWithError;
     private File testFileDataAnimals;
 
+    private XMLParser xmlParser;
+
     // in an interview-- give you a fourth file and now run program on that
     // don't only write a program that works for these two files PARSE ANY XML file
 
@@ -25,13 +28,15 @@ public class JU_MyXmlParserTest {
         this.testFileLivWithError = new File(catalogOfXmlToBePresented + "LivWithErrors.xml");
         this.testFileDataAnimals = new File(catalogOfXmlToBePresented + "data_animals.xml");
     }
+    void init(){
+        xmlParser = new NewXmlParser();
+    }
 
     @Test
     public void xmlParserTestLiv() {
 
 
         // TODO make this test compile and run.
-        XMLParser xmlParser = new NewXmlParser();
         XmlObject myTopLevelXmlObject = xmlParser.parseFile(testFileLiv);
 //
 //        Presenter2 xmlPresenter;
@@ -39,11 +44,8 @@ public class JU_MyXmlParserTest {
 //        xmlPresenter.display();
     }
 
-    //TODO write tests for the other files data_animals.xml LivWithErrors.xml
-
     @Test
     public void xmlParserTestLivWithErrors(){
-        XMLParser xmlParser = new NewXmlParser();
         XmlObject topLayer = xmlParser.parseFile(testFileLivWithError);
         if (topLayer != null){
             new Presenter2(topLayer).display();
@@ -53,7 +55,6 @@ public class JU_MyXmlParserTest {
 
     @Test
     public void xmlParserTestDataAnimals(){
-        XMLParser xmlParser = new NewXmlParser();
         XmlObject topLevel = xmlParser.parseFile(testFileDataAnimals);
         if (topLevel != null){
             new Presenter2(topLevel).display();
