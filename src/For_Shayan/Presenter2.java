@@ -1,7 +1,5 @@
 package For_Shayan;
 
-import java.util.ArrayList;
-
 public class Presenter2 {
     XmlObject object;
 
@@ -18,16 +16,20 @@ public class Presenter2 {
         System.out.println(output.toString());
     }
 
+    // building the output string with all the content
     private void build(StringBuilder output, int depth, XmlObject object) {
         output.append("\n");
         output.append(generateHeader(depth, object.getHeader())).append("\n");
+        // check to see if there are attributes
         if (object.getNameAttributePairs() != null){
         object.getNameAttributePairs().forEach((key, value) -> output.append(generateAttribute(depth, key,
                 value)).append("\n"));
         }
+        // check for text content
         if (object.getTexContent() != null) {
             output.append(generateText(depth, object.getTexContent()));
         }
+        // repeat for each child.
         object.getChildren().forEach(child -> {
             try {
                 build(output, depth + 1, child.build());

@@ -34,6 +34,7 @@ public class NewXmlParser implements XMLParser {
             //      create variables:
             Stack<XmlObject.XmlObjectBuilder> unclosedXmlObjects = new Stack<>();
             XmlObject.XmlObjectBuilder nodeToBeReturned = null;
+            int ticker = 0;
 
             // Create logic:
             while (scanner.hasNextLine()) {
@@ -81,7 +82,17 @@ public class NewXmlParser implements XMLParser {
                     System.out.println(BLUE + mapAttributes.toString() + RESET);
                 }
 
-                // TODO find out whether I need to build before I add them? SA
+                // First Object Found:
+                if (unclosedXmlObjects.isEmpty()) {
+                    nodeToBeReturned = nodeUnderConstruction;
+                    unclosedXmlObjects.add(nodeToBeReturned);
+                    ticker += 1;
+                    if (!scanner.hasNextLine()) {
+                        ticker -=1;
+                        return nodeToBeReturned.build();
+                    }
+                    continue;
+                }
 
                 // Determine whether node has children or not
                 if (line.contains(STARTER) && line.contains(END_SAME_LINE)) {
@@ -90,6 +101,7 @@ public class NewXmlParser implements XMLParser {
                     System.out.println("RETURN OBJECT");
                     unclosedXmlObjects.peek().addKiddies(nodeToBeReturned);
                 } else if (line.contains(END) && !headerMatcher.find()) {
+                    ticker -=1;
                     // close the top stack
                     System.out.println(RED + "Close the top stack" + RESET);
                     unclosedXmlObjects.pop();
@@ -99,6 +111,7 @@ public class NewXmlParser implements XMLParser {
                     unclosedXmlObjects.push(nodeToBeReturned);
                     System.out.println(RED + "add to stack" + RESET);
                 } else {
+                    ticker += 1;
                     // line has children and must be added to stack
                     // must add to parent first and then add to stack
                     System.out.println(RED + "Adding to parent then stack" + RESET);
@@ -114,6 +127,7 @@ public class NewXmlParser implements XMLParser {
                         assert unclosedXmlObjects.isEmpty();
                     } catch (AssertionError e) {
                         System.out.println("ISSUE WITH XML OBJECT PLEASE CHECK FORMATTING");
+                        System.out.println(ticker);
                     }
                 }
 
@@ -147,10 +161,6 @@ public class NewXmlParser implements XMLParser {
 //            add child node to parent
 //            do the above for next line;
         return null;
-    }
-
-    void PresentData(){
-        System.out.println("Presenting data");
     }
 
 }
