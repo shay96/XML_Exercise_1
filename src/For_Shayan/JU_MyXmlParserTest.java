@@ -14,7 +14,6 @@ public class JU_MyXmlParserTest {
     private File testFileLiv; //
     private File testFileLivWithError;
     private File testFileDataAnimals;
-
     private XMLParser xmlParser;
 
     // in an interview-- give you a fourth file and now run program on that
@@ -27,10 +26,9 @@ public class JU_MyXmlParserTest {
         this.testFileLiv = new File(catalogOfXmlToBePresented + "Liv.xml");
         this.testFileLivWithError = new File(catalogOfXmlToBePresented + "LivWithErrors.xml");
         this.testFileDataAnimals = new File(catalogOfXmlToBePresented + "data_animals.xml");
+        this.xmlParser = new NewXmlParser();
     }
-    void init(){
-        xmlParser = new NewXmlParser();
-    }
+
 
     @Test
     public void xmlParserTestLiv() {
