@@ -1,7 +1,7 @@
 package For_Shayan;
 
 public class Presenter2 {
-    XmlObject object;
+    private XmlObject object;
 
     Presenter2(XmlObject object) {
         this.object = object;
@@ -21,9 +21,9 @@ public class Presenter2 {
         output.append("\n");
         output.append(generateHeader(depth, object.getHeader())).append("\n");
         // check to see if there are attributes
-        if (object.getNameAttributePairs() != null){
-        object.getNameAttributePairs().forEach((key, value) -> output.append(generateAttribute(depth, key,
-                value)).append("\n"));
+        if (object.getNameAttributePairs() != null) {
+            object.getNameAttributePairs().forEach((key, value) -> output.append(generateAttribute(depth, key,
+                    value)).append("\n"));
         }
         // check for text content
         if (object.getTexContent() != null) {
